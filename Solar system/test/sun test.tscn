@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://coim7nd1xjkf2"]
+
+[ext_resource type="Shader" uid="uid://cko2eeuvmm107" path="res://Solar system/test/procedural sun.tres" id="1_yk8r4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ca1ww"]
+render_priority = 0
+shader = ExtResource("1_yk8r4")
+
+[sub_resource type="SphereMesh" id="SphereMesh_k48mq"]
+material = SubResource("ShaderMaterial_ca1ww")
+
+[node name="Node3D" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_k48mq")

@@ -1,0 +1,11 @@
+[gd_resource type="SphereMesh" load_steps=2 format=3 uid="uid://b71oo6f3uwpp3"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pw0fa"]
+emission_enabled = true
+emission = Color(1, 0.117647, 0, 1)
+emission_energy_multiplier = 16.0
+
+[resource]
+material = SubResource("StandardMaterial3D_pw0fa")
+radius = 1.0
+height = 2.0

@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://bnqsod2gu7e7e"]
+
+[ext_resource type="Script" path="res://test.gd" id="1_tsa7v"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gtxqe"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_wen2f"]
+material = SubResource("StandardMaterial3D_gtxqe")
+subdivide_width = 32
+subdivide_depth = 32
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_tsa7v")
+
+[node name="map" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_wen2f")

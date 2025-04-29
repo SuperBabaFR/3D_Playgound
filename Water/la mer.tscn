@@ -1,0 +1,53 @@
+[gd_scene load_steps=10 format=3 uid="uid://dksjnyllvkuk7"]
+
+[ext_resource type="Shader" path="res://water.gdshader" id="2_cmq00"]
+[ext_resource type="Material" uid="uid://bcq0kyetlsy8a" path="res://Water/sky.tres" id="3_bs1op"]
+
+[sub_resource type="Sky" id="Sky_mvxeb"]
+sky_material = ExtResource("3_bs1op")
+
+[sub_resource type="Environment" id="Environment_au68k"]
+background_mode = 2
+sky = SubResource("Sky_mvxeb")
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_nm8xe"]
+dof_blur_far_distance = 20.0
+dof_blur_far_transition = 30.0
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_gp54b"]
+noise_type = 2
+frequency = 0.005
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_b5ufc"]
+generate_mipmaps = false
+seamless = true
+noise = SubResource("FastNoiseLite_gp54b")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6t7hl"]
+render_priority = 0
+shader = ExtResource("2_cmq00")
+shader_parameter/noise = SubResource("NoiseTexture2D_b5ufc")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_c3ntv"]
+material = SubResource("ShaderMaterial_6t7hl")
+size = Vector2(35, 35)
+subdivide_width = 640
+subdivide_depth = 640
+
+[node name="Node3D" type="Node3D"]
+
+[node name="View" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.996297, -0.0859733, 0, 0.0859733, 0.996297, 0, 1.3976, 28.5357)
+current = true
+metadata/_edit_group_ = true
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.838737, 0.544537, 0, -0.544537, -0.838737, 0, 0, -8.15748)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_au68k")
+camera_attributes = SubResource("CameraAttributesPractical_nm8xe")
+
+[node name="sea" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.583679, 9.55155)
+mesh = SubResource("PlaneMesh_c3ntv")

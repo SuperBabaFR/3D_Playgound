@@ -1,0 +1,292 @@
+[gd_scene load_steps=52 format=3 uid="uid://d3nvx4q3non64"]
+
+[ext_resource type="Script" path="res://Solar system/solar_system.gd" id="1_b6xnf"]
+[ext_resource type="Material" uid="uid://c21c5jut6hayu" path="res://Solar system/test/sun_original.tres" id="2_2ach0"]
+[ext_resource type="Script" path="res://Solar system/Astre.gd" id="3_uo7xw"]
+[ext_resource type="Texture2D" uid="uid://d2oybj873hndh" path="res://Solar system/Textures/HDR_multi_nebulae.hdr" id="4_db55b"]
+[ext_resource type="Texture2D" uid="uid://b3odv5yg111b0" path="res://Solar system/Textures/Diffuse/8k_earth_d_daymap.png" id="4_sqsm6"]
+[ext_resource type="Texture2D" uid="uid://dmrfauaw17ce7" path="res://Solar system/Textures/Specular/8k_earth_s.png" id="5_lvp3m"]
+[ext_resource type="Texture2D" uid="uid://cicbukmvupkvt" path="res://Solar system/Textures/Diffuse/8k_earth_d_nightmap.png" id="5_qi4cv"]
+[ext_resource type="Texture2D" uid="uid://hglxglw1xh0h" path="res://Solar system/Textures/Normal/8k_earth_n.png" id="6_aqs83"]
+[ext_resource type="Texture2D" uid="uid://b0shfjw2ojyuf" path="res://Solar system/Textures/Diffuse/2k_moon_d.png" id="8_vu3ke"]
+[ext_resource type="Texture2D" uid="uid://nhqiw5ehf1n2" path="res://Solar system/Textures/Displacement/2k_moon_h.png" id="9_qwj35"]
+[ext_resource type="Texture2D" uid="uid://djymnycmr6qvn" path="res://Solar system/Textures/Specular/2k_moon_s.png" id="10_gx44k"]
+[ext_resource type="Texture2D" uid="uid://cdr4711ky36o7" path="res://Solar system/Textures/Normal/2k_moon_n.png" id="11_6p2c3"]
+[ext_resource type="Texture2D" uid="uid://y770pxlrbgs8" path="res://Solar system/Textures/Diffuse/2k_mercury.jpg" id="12_nrlox"]
+[ext_resource type="Texture2D" uid="uid://7wyy58u4grua" path="res://Solar system/Textures/Diffuse/2k_saturn.jpg" id="13_438ef"]
+[ext_resource type="Texture2D" uid="uid://cv2wwxndf8cwk" path="res://Solar system/Textures/Diffuse/2k_mars.jpg" id="14_qxv31"]
+[ext_resource type="Texture2D" uid="uid://crrpabe136rl3" path="res://Solar system/Textures/Diffuse/2k_venus_surface.jpg" id="15_8nmmr"]
+[ext_resource type="Texture2D" uid="uid://rmab35n1v5pa" path="res://Solar system/Textures/Diffuse/2k_venus_atmosphere.jpg" id="16_38ue3"]
+[ext_resource type="Texture2D" uid="uid://hprqux4f0hu6" path="res://Solar system/Textures/Diffuse/2k_jupiter.jpg" id="17_uw22r"]
+[ext_resource type="Texture2D" uid="uid://di0swtrru0644" path="res://Solar system/Textures/Diffuse/2k_neptune.jpg" id="18_71pen"]
+[ext_resource type="Texture2D" uid="uid://b6ix0lhljaru" path="res://Solar system/Textures/Diffuse/2k_uranus.jpg" id="19_tbmsc"]
+[ext_resource type="Shader" uid="uid://d3mnudw4vtqjj" path="res://Solar system/solar_effets.tres" id="21_06nyk"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_ap1i5"]
+material = ExtResource("2_2ach0")
+radius = 100.0
+height = 200.0
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_oiyxg"]
+panorama = ExtResource("4_db55b")
+
+[sub_resource type="Sky" id="Sky_tm4rb"]
+sky_material = SubResource("PanoramaSkyMaterial_oiyxg")
+
+[sub_resource type="Environment" id="Environment_0786n"]
+background_mode = 2
+background_canvas_max_layer = -1
+sky = SubResource("Sky_tm4rb")
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 0.01
+ssr_fade_in = 0.135188
+ssr_fade_out = 0.965936
+glow_enabled = true
+glow_bloom = 0.2
+glow_blend_mode = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jjp2g"]
+albedo_texture = ExtResource("12_nrlox")
+
+[sub_resource type="SphereMesh" id="SphereMesh_tywlf"]
+material = SubResource("StandardMaterial3D_jjp2g")
+radius = 5.0
+height = 10.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_qi1wn"]
+load_path = "res://.godot/imported/8k_earth_d_nightmap.png-6e45dfa831ee2a56886227b02fa2afb3.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0j3ue"]
+blend_mode = 1
+depth_draw_mode = 1
+albedo_texture = ExtResource("16_38ue3")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_nom3p"]
+load_path = "res://.godot/imported/8k_earth_n.png-d61e45d4ae61c1b54ced5dea8f37dc5b.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nnksu"]
+next_pass = SubResource("StandardMaterial3D_0j3ue")
+albedo_texture = ExtResource("15_8nmmr")
+emission_texture = SubResource("CompressedTexture2D_qi1wn")
+normal_texture = SubResource("CompressedTexture2D_nom3p")
+
+[sub_resource type="SphereMesh" id="SphereMesh_k1xsj"]
+material = SubResource("StandardMaterial3D_nnksu")
+radius = 12.0
+height = 24.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ku5er"]
+albedo_texture = ExtResource("4_sqsm6")
+metallic = 1.0
+metallic_texture = ExtResource("5_lvp3m")
+emission_enabled = true
+emission_texture = ExtResource("5_qi4cv")
+normal_enabled = true
+normal_texture = ExtResource("6_aqs83")
+
+[sub_resource type="SphereMesh" id="SphereMesh_jbvu5"]
+material = SubResource("StandardMaterial3D_ku5er")
+radius = 13.0
+height = 26.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b2bu7"]
+albedo_texture = ExtResource("8_vu3ke")
+metallic_texture = ExtResource("10_gx44k")
+normal_enabled = true
+normal_texture = ExtResource("11_6p2c3")
+heightmap_enabled = true
+heightmap_deep_parallax = true
+heightmap_min_layers = 32
+heightmap_max_layers = 64
+heightmap_texture = ExtResource("9_qwj35")
+
+[sub_resource type="SphereMesh" id="SphereMesh_bueal"]
+material = SubResource("StandardMaterial3D_b2bu7")
+radius = 3.0
+height = 6.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_loagg"]
+albedo_texture = ExtResource("14_qxv31")
+
+[sub_resource type="SphereMesh" id="SphereMesh_fgs5d"]
+material = SubResource("StandardMaterial3D_loagg")
+radius = 7.0
+height = 14.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qxn4p"]
+albedo_texture = ExtResource("17_uw22r")
+
+[sub_resource type="SphereMesh" id="SphereMesh_nwf3u"]
+material = SubResource("StandardMaterial3D_qxn4p")
+radius = 45.0
+height = 90.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dxbed"]
+albedo_texture = ExtResource("13_438ef")
+
+[sub_resource type="SphereMesh" id="SphereMesh_i0qi6"]
+material = SubResource("StandardMaterial3D_dxbed")
+radius = 35.0
+height = 70.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xfj3c"]
+albedo_texture = ExtResource("19_tbmsc")
+
+[sub_resource type="SphereMesh" id="SphereMesh_2t60p"]
+material = SubResource("StandardMaterial3D_xfj3c")
+radius = 30.0
+height = 60.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ph0e1"]
+albedo_texture = ExtResource("18_71pen")
+
+[sub_resource type="SphereMesh" id="SphereMesh_awk73"]
+material = SubResource("StandardMaterial3D_ph0e1")
+radius = 20.0
+height = 40.0
+
+[sub_resource type="Curve" id="Curve_wyrxk"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 0.509063), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_dpxy0"]
+curve = SubResource("Curve_wyrxk")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_4a3rd"]
+particle_flag_align_y = true
+emission_shape = 2
+emission_sphere_radius = 100.0
+direction = Vector3(0, 0, 0)
+radial_velocity_min = -0.100022
+radial_velocity_max = 0.999978
+gravity = Vector3(0, 0, 0)
+linear_accel_min = -2.23517e-06
+linear_accel_max = -2.23517e-06
+radial_accel_min = -2.23517e-06
+radial_accel_max = 0.999998
+scale_curve = SubResource("CurveTexture_dpxy0")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r0u6p"]
+render_priority = 0
+shader = ExtResource("21_06nyk")
+
+[sub_resource type="QuadMesh" id="QuadMesh_op0b6"]
+material = SubResource("ShaderMaterial_r0u6p")
+size = Vector2(2, 20)
+center_offset = Vector3(1, 10, 0)
+orientation = 0
+
+[node name="Solar system" type="Node3D"]
+script = ExtResource("1_b6xnf")
+
+[node name="Sun" type="MeshInstance3D" parent="."]
+layers = 2
+mesh = SubResource("SphereMesh_ap1i5")
+script = ExtResource("3_uo7xw")
+rotation_speed = 0.5
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_0786n")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-6.09688e-08, -0.58425, 0.811574, 9.87478e-09, 0.811574, 0.58425, -1, 4.36351e-08, -4.37113e-08, 307.752, 280.132, 0)
+rotation_order = 0
+
+[node name="Mercury" type="MeshInstance3D" parent="." node_paths=PackedStringArray("center_orbit")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 130)
+mesh = SubResource("SphereMesh_tywlf")
+skeleton = NodePath("../Sun")
+script = ExtResource("3_uo7xw")
+rotation_speed = 0.8
+distance_orbit = 40.0
+speed_orbit = 45.0
+center_orbit = NodePath("../Sun")
+
+[node name="Venus" type="MeshInstance3D" parent="." node_paths=PackedStringArray("center_orbit")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 180)
+mesh = SubResource("SphereMesh_k1xsj")
+skeleton = NodePath("../Sun")
+script = ExtResource("3_uo7xw")
+rotation_speed = 0.2
+distance_orbit = 70.0
+speed_orbit = 20.0
+center_orbit = NodePath("../Sun")
+
+[node name="Earth" type="MeshInstance3D" parent="." node_paths=PackedStringArray("center_orbit")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 250)
+mesh = SubResource("SphereMesh_jbvu5")
+skeleton = NodePath("../Sun")
+script = ExtResource("3_uo7xw")
+rotation_speed = 4.0
+distance_orbit = 100.0
+speed_orbit = 15.0
+center_orbit = NodePath("../Sun")
+
+[node name="Moon" type="MeshInstance3D" parent="." node_paths=PackedStringArray("center_orbit")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 742.673)
+mesh = SubResource("SphereMesh_bueal")
+skeleton = NodePath("../Sun")
+script = ExtResource("3_uo7xw")
+rotation_speed = 0.4
+distance_orbit = 1.0
+speed_orbit = 180.0
+center_orbit = NodePath("../Earth")
+
+[node name="Mars" type="MeshInstance3D" parent="." node_paths=PackedStringArray("center_orbit")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 350)
+mesh = SubResource("SphereMesh_fgs5d")
+skeleton = NodePath("../Sun")
+script = ExtResource("3_uo7xw")
+rotation_speed = 3.6
+distance_orbit = 250.0
+speed_orbit = 10.0
+center_orbit = NodePath("../Sun")
+
+[node name="Jupiter" type="MeshInstance3D" parent="." node_paths=PackedStringArray("center_orbit")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 500)
+mesh = SubResource("SphereMesh_nwf3u")
+skeleton = NodePath("../Sun")
+script = ExtResource("3_uo7xw")
+rotation_speed = 6.0
+distance_orbit = 400.0
+speed_orbit = 5.0
+center_orbit = NodePath("../Sun")
+
+[node name="Saturne" type="MeshInstance3D" parent="." node_paths=PackedStringArray("center_orbit")]
+transform = Transform3D(1, 0, 0, 0, 0.999072, 0.0430788, 0, -0.0430788, 0.999072, 0, 0, 650)
+mesh = SubResource("SphereMesh_i0qi6")
+skeleton = NodePath("../Sun")
+script = ExtResource("3_uo7xw")
+rotation_speed = 5.6
+distance_orbit = 550.0
+speed_orbit = 3.0
+center_orbit = NodePath("../Sun")
+
+[node name="Uranus" type="MeshInstance3D" parent="." node_paths=PackedStringArray("center_orbit")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 850)
+mesh = SubResource("SphereMesh_2t60p")
+skeleton = NodePath("../Sun")
+script = ExtResource("3_uo7xw")
+rotation_speed = 3.0
+distance_orbit = 750.0
+speed_orbit = 2.0
+center_orbit = NodePath("../Sun")
+
+[node name="Neptune" type="MeshInstance3D" parent="." node_paths=PackedStringArray("center_orbit")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 950)
+mesh = SubResource("SphereMesh_awk73")
+skeleton = NodePath("../Sun")
+script = ExtResource("3_uo7xw")
+rotation_speed = 2.4
+distance_orbit = 850.0
+center_orbit = NodePath("../Sun")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+light_energy = 100.0
+omni_range = 1276.46
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+amount = 512
+process_material = SubResource("ParticleProcessMaterial_4a3rd")
+draw_pass_1 = SubResource("QuadMesh_op0b6")
